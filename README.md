@@ -1,46 +1,130 @@
-# Getting Started with Create React App
+# Modern Chess Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A feature-rich, modern chess game built with React and TypeScript, featuring an AI opponent, timer functionality, and beautiful animations.
 
-## Available Scripts
+![Chess Game Screenshot](screenshot.png)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Gameplay
+- Play against an AI opponent
+- Timer mode with 5-minute time control
+- Move validation and game state tracking
+- Automatic game end detection (checkmate, stalemate, time expiration)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Visual Design
+- Modern, responsive UI with smooth animations
+- Beautiful piece movements and capture effects
+- Dynamic game status display
+- Interactive player stats with hover effects
+- Floating animations for active elements
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Player Experience
+- Real-time move history
+- Captured pieces display
+- Enhanced game statistics
+- Smooth transitions and hover effects
+- Responsive design for all screen sizes
 
-### `npm test`
+### Technical Features
+- TypeScript for type safety
+- React with modern hooks
+- Styled-components for styling
+- Efficient state management
+- Optimized performance
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/chessgame.git
+cd chessgame
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-### `npm run eject`
+3. Start the development server:
+```bash
+npm start
+# or
+yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The application will open in your default browser at `http://localhost:3000`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Game Controls
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Click on a piece to select it
+- Click on a highlighted square to move
+- Use the "Start Game" button to begin
+- Use the "New Game" button to reset
+- Timer mode can be toggled before starting the game
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Game Features
 
-## Learn More
+### Timer Mode
+- 5-minute time control for each player
+- Automatic game end when time expires
+- Visual timer display with warning states
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### AI Opponent
+- Smart move evaluation
+- Adaptive difficulty
+- Realistic thinking time simulation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Statistics
+- Move count
+- Capture tracking
+- Check counting
+- Average move time
+- Longest and shortest moves
+- Piece activity tracking
+
+## Development
+
+### Project Structure
+```
+src/
+  ├── components/     # React components
+  ├── services/       # Game logic and AI
+  ├── types/          # TypeScript type definitions
+  ├── config/         # Game configuration
+  └── styles/         # Global styles
+```
+
+### Available Scripts
+
+- `npm start` - Runs the app in development mode
+- `npm test` - Launches the test runner
+- `npm run build` - Builds the app for production
+- `npm run eject` - Ejects from Create React App
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Chess.js for game logic
+- React for the UI framework
+- Styled-components for styling
+- TypeScript for type safety

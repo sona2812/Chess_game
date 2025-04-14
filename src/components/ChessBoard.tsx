@@ -869,12 +869,8 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ size, currentTheme }) => {
           if (newTime === 0) {
             const winner = currentPlayer === 'white' ? 'Black' : 'White';
             setStatus(`${winner} wins on time!`);
-            // End the game by making an invalid move
-            try {
-              game.move({ from: 'a1', to: 'a1' });
-            } catch (e) {
-              // This will force the game to end
-            }
+            // End the game by loading a valid FEN that represents a game over state
+            game.load('4k3/8/8/8/8/8/8/4K3 w - - 0 1');
           }
           
           return {
@@ -1216,23 +1212,23 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ size, currentTheme }) => {
   };
 
   const getGameOverType = () => {
-    if (game.isCheckmate()) {
-      return game.turn() === 'b' ? 'win' : 'lose';
-    }
     if (status.includes('wins on time')) {
       return status.includes('White wins') ? 'win' : 'lose';
+    }
+    if (game.isCheckmate()) {
+      return game.turn() === 'b' ? 'win' : 'lose';
     }
     return 'draw';
   };
 
   const getGameOverMessage = () => {
-    if (game.isCheckmate()) {
-      return game.turn() === 'b' 
+    if (status.includes('wins on time')) {
+      return status.includes('White wins') 
         ? '🎉 Congratulations! 🎉' 
         : 'Game Over';
     }
-    if (status.includes('wins on time')) {
-      return status.includes('White wins') 
+    if (game.isCheckmate()) {
+      return game.turn() === 'b' 
         ? '🎉 Congratulations! 🎉' 
         : 'Game Over';
     }
