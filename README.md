@@ -43,7 +43,7 @@ A feature-rich, modern chess game built with React and TypeScript, featuring an 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/chessgame.git
+git clone https://github.com/sona2812/Chess_game.git
 cd chessgame
 ```
 
