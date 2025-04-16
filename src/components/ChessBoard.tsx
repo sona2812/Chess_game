@@ -782,7 +782,7 @@ interface ChessBoardState {
 
 const ChessBoard: React.FC<ChessBoardProps> = ({ size, currentTheme }) => {
   const [game] = useState(() => {
-    const savedFen = typeof window !== 'undefined' ? localStorage.getItem('chessFen') : null;
+    const savedFen = localStorage.getItem('chessFen');
     if (savedFen) {
       const newGame = new Chess();
       newGame.load(savedFen);
@@ -853,24 +853,10 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ size, currentTheme }) => {
   });
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('chessFen', game.fen());
-      localStorage.setItem('chessMoves', JSON.stringify(moveHistory));
-      localStorage.setItem('chessGameState', JSON.stringify(gameState));
-    }
+    localStorage.setItem('chessFen', game.fen());
+    localStorage.setItem('chessMoves', JSON.stringify(moveHistory));
+    localStorage.setItem('chessGameState', JSON.stringify(gameState));
   }, [game.fen(), moveHistory, gameState]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('chessPlayerStats', JSON.stringify(playerStats));
-    }
-  }, [playerStats]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('chessTimer', JSON.stringify(currentTimer));
-    }
-  }, [currentTimer]);
 
   useEffect(() => {
     if (!game.isGameOver() && gameState.isGameStarted && gameState.timerMode === '5min') {
@@ -897,6 +883,14 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ size, currentTheme }) => {
       return () => clearInterval(interval);
     }
   }, [game.turn(), gameState.isGameStarted, gameState.timerMode]);
+
+  useEffect(() => {
+    localStorage.setItem('chessPlayerStats', JSON.stringify(playerStats));
+  }, [playerStats]);
+
+  useEffect(() => {
+    localStorage.setItem('chessTimer', JSON.stringify(currentTimer));
+  }, [currentTimer]);
 
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
@@ -939,13 +933,11 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ size, currentTheme }) => {
       white: gameState.timerMode === '5min' ? 300 : Infinity,
       black: gameState.timerMode === '5min' ? 300 : Infinity
     });
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('chessFen');
-      localStorage.removeItem('chessMoves');
-      localStorage.removeItem('chessGameState');
-      localStorage.removeItem('chessPlayerStats');
-      localStorage.removeItem('chessTimer');
-    }
+    localStorage.removeItem('chessFen');
+    localStorage.removeItem('chessMoves');
+    localStorage.removeItem('chessGameState');
+    localStorage.removeItem('chessPlayerStats');
+    localStorage.removeItem('chessTimer');
     updateStatus();
   };
 
@@ -1379,11 +1371,7 @@ const ChessBoard: React.FC<ChessBoardProps> = ({ size, currentTheme }) => {
           <GameStatus isGameOver={game.isGameOver()} isActive={true}>
             {status}
           </GameStatus>
-          <BoardContainer size={size}>
-            {Array(8).fill(null).map((_, i) => (
-              Array(8).fill(null).map((_, j) => renderSquare(i, j))
-            ))}
-          </BoardContainer>
+          <BoardContainer size={size}>{renderBoard()}</BoardContainer>
           <CommentaryBox>{currentComment}</CommentaryBox>
         </div>
       </div>
